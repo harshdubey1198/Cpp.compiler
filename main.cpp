@@ -1,9 +1,8 @@
 // #include <iostream>
 // using namespace std;
 
-
-
 // prog.1 : 1-dash-no-pattern.cpp
+
 /*
 #include <iostream>
 using namespace std;
@@ -488,3 +487,87 @@ int main()
     return 0;    
 }
 */
+// Call by : Value , Address and reference
+/*
+void swap (int a , int b)
+{
+    int x ,y,temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+void swap2 (int *m , int *n)
+{
+    int x,y,temp;
+    temp = *m;
+    *m = *n;
+    *n = temp;
+}
+void swap3(int &a , int &b)
+{
+    int x,y,temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+int main()
+{
+    int x ,y , temp;// , *m , * n;
+    x=10,y=20;
+ //   *m  = &x , *n = &y;
+  //  swap(x,y);
+  //  swap(10,20);
+  //  swap(x,y);
+   // swap2(10,20); 
+    swap3(&x,&y);
+    return 0;    
+}
+*/
+#include<iostream>
+using namespace std;
+
+class Demo{
+
+private:    
+    int a;
+    int b;
+
+public:
+    void setA(int x){a=x;}
+    int getA(){return a;}
+
+    void setB(int y){b=y;}
+    int getB(){return b;}
+    
+    void show(){cout<<"a = "<< a << "& b ="<< b << endl;}
+    Demo operator+(const Demo & ob2); // member function declare
+    
+};
+Demo Demo :: operator+(const Demo & ob2) // function Define 
+{
+    Demo temp;
+    temp.a = a + ob2.a;
+    temp.b = b + ob2.b;
+    return temp;
+}
+int main()
+{
+
+    Demo ob1;
+    Demo ob2;
+    Demo res;
+    ob1.setA(15);
+    ob1.setB(25);
+    ob1.show();
+
+    ob2.setA(12);
+    ob2.setB(27);
+    ob2.show();
+    cout << "a= a1+a2 & b = b1 + b2"<<endl;
+    // res = ob1.operator+(ob2)
+    res = ob1  + ob2; // ob1 (calling object) + ob2 (arguments) 
+    // overloaded assignment operator invoke in case when object is already created before.
+    // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
+    res.show();
+    return 0;
+}

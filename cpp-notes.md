@@ -318,3 +318,37 @@ int main()
     return 0;    
 }
 ```
+## Association : Composition ( containership) and Aggregation
+
+## Call by : Value , Address and reference
+```
+void show (int a , int b)
+{
+    int x ,y;
+    temp = a;
+    a = b;
+    b = temp;
+}
+void show (int *a , int *b)
+{
+    int x,y;
+    temp = a;
+    a = b;
+    b = temp;
+}
+void show (int &a , int &b)
+{
+    int x,y;
+    temp = a;
+    a = b;
+    b = temp;
+}
+int main()
+{
+    int x = 10 ,y = 20;
+    swap1(x,y);
+    swap2(x,y);
+    swap3(&x,&y);
+    return 0;    
+}
+```
