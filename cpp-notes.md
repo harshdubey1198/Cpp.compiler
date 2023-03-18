@@ -352,3 +352,277 @@ int main()
     return 0;    
 }
 ```
+## operator overloading 
+```
+#include<iostream>
+using namespace std;
+
+class Demo{
+
+private:    
+    int a;
+    int b;
+
+public:
+    void setA(int x){a=x;}
+    int getA(){return a;}
+
+    void setB(int y){b=y;}
+    int getB(){return b;}
+    
+    void show(){cout<<"a = "<< a << "& b ="<< b << endl;}
+    Demo operator+(const Demo & ob2); // member function declare
+    
+};
+Demo Demo :: operator+(const Demo & ob2) // function Define 
+{
+    Demo temp;
+    temp.a = a + ob2.a;
+    temp.b = b + ob2.b;
+    return temp;
+}
+int main()
+{
+
+    Demo ob1;
+    Demo ob2;
+    Demo res;
+    ob1.setA(15);
+    ob1.setB(25);
+    ob1.show();
+
+    ob2.setA(12);
+    ob2.setB(27);
+    ob2.show();
+    cout << "a= a1+a2 & b = b1 + b2"<<endl;
+    // res = ob1.operator+(ob2)
+    res = ob1  + ob2; // ob1 (calling object) + ob2 (arguments) 
+    // overloaded assignment operator invoke in case when object is already created before.
+    // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
+    res.show();
+    return 0;
+}
+```
+#include<iostream>
+using namespace std;
+
+class Demo{
+
+private:    
+    int a;
+    int b;
+
+public:
+    void setA(int x){a=x;}
+    int getA(){return a;}
+
+    void setB(int y){b=y;}
+    int getB(){return b;}
+    
+    void show(){cout<<"a = "<< a << "& b ="<< b << endl;}
+    void operator++(const Demo & ob2); // member function declare
+    
+};
+Demo Demo :: operator+(const Demo & ob2) // function Define 
+{
+    Demo temp;
+    temp.a = a + ob2.a;
+    temp.b = b + ob2.b;
+    return temp;
+}
+void Demo :: operator++() // function Define 
+{
+    ++a;
+    ++b;
+}
+int main()
+{
+
+    Demo ob1;
+    Demo ob2;
+    Demo res;
+    ob1.setA(15);
+    ob1.setB(25);
+    ob1.show();
+
+    ob2.setA(12);
+    ob2.setB(27);
+    ob2.show();
+    cout << "a= a1+a2 & b = b1 + b2"<<endl;
+    // res = ob1.operator+(ob2)
+    res = ob1  + ob2; // ob1 (calling object) + ob2 (arguments) 
+    // overloaded assignment operator invoke in case when object is already created before.
+    // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
+    res.show();
+    ++res;
+    res.show();
+    return 0;
+}
+
+// Dynamic polymorphism
+```
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+/*
+   //  Car ob;
+    Vehicle ob;
+    ob.accl(); 
+   // ob.brake();
+    */
+    Car ob;
+    // Vehicle ob;
+    ob.accl(); 
+    ob.brake();
+    return 0;    
+}
+```
+// Dynamic polymorphism
+```
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+    Car *ob = new Car();
+    ob -> accl(); 
+    ob -> brake();
+
+    return 0;    
+}
+```
+## compile time polymorphism instead of runtime 
+```
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+    Car obj;
+    Vehicle &obj = ob;
+    ob.accl(); 
+    ob.brake();
+
+    return 0;    
+}
+```
+```
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+    virtual void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+    // use virtual function to perform method overriding otherwise it doesn't override.
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+int main()
+{
+    Car ob;
+    Vehicle & obj = ob;
+    obj.accl(); 
+  //  obj.brake();  bcz it's not in Vehicle class
+
+    return 0;    
+}
+```
+## Shallow copy and Deep copy
+```
+#include<iostream>
+using namespace std;
+class A {
+ public : 
+    int *p;
+// public:
+    A()
+    {
+        p = new int; // for 
+    }
+    void show(){cout<<"Data: "<<*p<<endl;}
+};
+int main()
+{
+    A ob1;
+    *(ob1.p) =25; // use *(ob1.p) = value to fetch the value.
+    A ob2 = ob1;
+    ob2.show();
+    return 0;    
+}
+```
+## Abstract Class :
+
+
+## Abstract Method
+
+
+
+// Abstraction implementation through abstract class 
+```
+#include<iostream>
+using namespace std;
+class Music {
+ public : 
+    virtual void bass() = 0;
+    void play(){cout<<"Playing Music "<<endl;}
+};
+class MusicDevice : public Music 
+{
+ public : 
+    void bass(){cout<<"Extra bass... "<<endl;}
+};
+class MusicPlayer
+{
+   MusicDevice md; 
+
+public : 
+    void startMusic()
+    {
+        md.bass();
+        md.play();
+    }
+
+};
+
+int main()
+{
+    MusicPlayer mp;
+    mp.startMusic();
+    return 0;    
+}
+```

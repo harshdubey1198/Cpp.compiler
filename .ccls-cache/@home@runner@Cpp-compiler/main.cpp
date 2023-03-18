@@ -522,7 +522,8 @@ int main()
     swap3(&x,&y);
     return 0;    
 }
-*/
+*//*
+// operator overloading  + operator
 #include<iostream>
 using namespace std;
 
@@ -570,4 +571,323 @@ int main()
     // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
     res.show();
     return 0;
+}*/
+
+/*
+//  operator overloading a++; and ++a;
+#include<iostream>
+using namespace std;
+
+class Demo{
+
+private:    
+    int a;
+    int b;
+
+public:
+    void setA(int x){a=x;}
+    int getA(){return a;}
+
+    void setB(int y){b=y;}
+    int getB(){return b;}
+    
+    void show(){cout<<"a = "<< a << "& b ="<< b << endl;}
+    Demo operator +(const Demo &ob2); // member function declare
+    void operator++();  
+    void operator++(int);  
+};
+Demo Demo :: operator+(const Demo & ob2) // function Define 
+{
+    Demo temp;
+    temp.a = a + ob2.a;
+    temp.b = b + ob2.b;
+    return temp;
 }
+void Demo :: operator ++() // function Define 
+{
+    ++a;
+    ++b;
+}
+void Demo :: operator ++(int) // function Define 
+{
+    ++a;
+    ++b;
+}
+int main()
+{
+
+    Demo ob1;
+    Demo ob2;
+    Demo res;
+    ob1.setA(15);
+    ob1.setB(25);
+    ob1.show();
+
+    ob2.setA(12);
+    ob2.setB(27);
+    ob2.show();
+    cout << "a= a1+a2 & b = b1 + b2"<<endl;
+    // res = ob1.operator+(ob2)
+    res = ob1  + ob2; // ob1 (calling object) + ob2 (arguments) 
+    // overloaded assignment operator invoke in case when object is already created before.
+    // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
+    res.show();
+    ++res;
+    res.show();
+    res++;
+    res.show();
+    return 0;
+}
+*/
+/*
+//  operator overloading << , a++; and ++a;
+#include<iostream>
+using namespace std;
+
+class Demo{
+//public:
+private:    
+    int a;
+    int b;
+
+public:
+    void setA(int x){a=x;}
+    int getA(){return a;}
+
+    void setB(int y){b=y;}
+    int getB(){return b;}
+    
+    void show(){cout<<"a = "<< a << "& b ="<< b << endl;}
+    Demo operator +(const Demo &ob2); // member function declare
+    void operator++();  
+    void operator++(int);  
+    friend void operator <<( ostream &t , const Demo & ob );
+// use friend function to access private member of class.
+};
+Demo Demo :: operator+(const Demo & ob2) // function Define 
+{
+    Demo temp;
+    temp.a = a + ob2.a;
+    temp.b = b + ob2.b;
+    return temp;
+}
+void Demo :: operator ++() // function Define 
+{
+    ++a;
+    ++b;
+}
+void Demo :: operator ++(int) // function Define 
+{
+    ++a;
+    ++b;
+}
+void operator <<( ostream &t , const Demo & ob ) // function Define 
+{
+    t<<ob.a<<" "<<ob.b<<endl;
+}
+int main()
+{
+
+    Demo ob1;
+    Demo ob2;
+    Demo res;
+    ob1.setA(15);
+    ob1.setB(25);
+    ob1.show();
+
+    ob2.setA(12);
+    ob2.setB(27);
+    ob2.show();
+    cout << "a= a1+a2 & b = b1 + b2"<<endl;
+    // res = ob1.operator+(ob2)
+    res = ob1  + ob2; // ob1 (calling object) + ob2 (arguments) 
+    // overloaded assignment operator invoke in case when object is already created before.
+    // Demo res = ob1 + ob2; //copy constructor invoke when object is not created 
+    res.show();
+    ++res;
+    res.show();
+    res++;
+    res.show();
+    cout<<res;
+    return 0;
+}
+*/ /*
+// Dynamic polymorphism
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+   //  Car ob;
+   // Vehicle ob;
+    //ob.accl(); 
+   // ob.brake();
+    
+    Car ob;
+    // Vehicle ob;
+    ob.accl(); 
+    ob.brake();
+    return 0;    
+}
+*/
+
+/* 
+//
+ 
+ #include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+    Car *ob = new Car();
+    ob -> accl(); 
+    ob -> brake();
+
+    return 0;    
+} */
+
+/*
+#include<iostream>
+using namespace std;
+class Vehicle {
+    public : 
+    virtual void accl(){cout<<"Accelerating at 100 kmph"<<endl;} 
+    // use virtual function to perform method overriding otherwise it doesn't override.
+};
+class Car : public Vehicle {
+    public : 
+        void accl(){cout<<"Accelerating at 140 kmph"<<endl;}
+        // it's overide the method 
+        void brake(){cout<<"Braking"<<endl;} 
+};
+
+int main()
+{
+    Car ob;
+    Vehicle & obj = ob;
+    obj.accl(); 
+  //  obj.brake();  bcz it's not in Vehicle class
+
+    return 0;    
+}
+*/
+//  Shallow copy and Deep copy
+
+/*
+// 1) shallow copy
+#include<iostream>
+using namespace std;
+class A {
+ public : 
+    int *p;
+// public:
+    A()
+    {
+        p = new int; // for 
+    }
+    void show(){cout<<"Data: "<<*p<<endl;}
+};
+int main()
+{
+    cout<<"Shallow Copy : "<<endl;
+    A ob1;
+    *(ob1.p) =25; // use *(ob1.p) = value to fetch the value.
+    ob1.show();
+    A ob2 = ob1;
+    ob2.show();
+
+    *(ob1.p) = 45;
+    ob1.show();    
+    ob2.show();
+    return 0;    
+}
+*/ 
+/*
+// 2) Deep copy
+#include<iostream>
+using namespace std;
+class A {
+ public : 
+    int *p;
+// public:
+    A()
+    {
+        p = new int; // for 
+    }
+    A (A & ob)
+    {
+         p = new int;  // when we have to deep copy use own copy constructor.
+        *p = *(ob.p);
+    }
+    void show(){cout<<"Data: "<<*p<<endl;}
+};
+int main()
+{
+    cout<<"Shallow Copy : "<<endl;
+    A ob1;
+    *(ob1.p) =25; // use *(ob1.p) = value to fetch the value.
+    ob1.show();
+    A ob2 = ob1;
+    ob2.show();
+
+    *(ob1.p) = 45;
+    ob1.show();    
+    ob2.show();
+    return 0;    
+}
+*/
+ 
+// Abstraction implementation through abstract class 
+/*
+#include<iostream>
+using namespace std;
+class Music {
+ public : 
+    virtual void bass() = 0;
+    void play(){cout<<"Playing Music "<<endl;}
+};
+class MusicDevice : public Music 
+{
+ public : 
+    void bass(){cout<<"Extra bass... "<<endl;}
+};
+class MusicPlayer
+{
+   MusicDevice md; 
+
+public : 
+    void startMusic()
+    {
+        md.bass();
+        md.play();
+    }
+
+};
+
+int main()
+{
+    MusicPlayer mp;
+    mp.startMusic();
+    return 0;    
+}
+*/

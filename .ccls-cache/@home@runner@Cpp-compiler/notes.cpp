@@ -794,7 +794,6 @@ int main()
 //  Shallow copy and Deep copy
 
 /*
-// 1) shallow copy
 #include<iostream>
 using namespace std;
 class A {
@@ -809,85 +808,10 @@ class A {
 };
 int main()
 {
-    cout<<"Shallow Copy : "<<endl;
     A ob1;
     *(ob1.p) =25; // use *(ob1.p) = value to fetch the value.
-    ob1.show();
     A ob2 = ob1;
     ob2.show();
-
-    *(ob1.p) = 45;
-    ob1.show();    
-    ob2.show();
-    return 0;    
-}
-*/ 
-/*
-// 2) Deep copy
-#include<iostream>
-using namespace std;
-class A {
- public : 
-    int *p;
-// public:
-    A()
-    {
-        p = new int; // for 
-    }
-    A (A & ob)
-    {
-         p = new int;  // when we have to deep copy use own copy constructor.
-        *p = *(ob.p);
-    }
-    void show(){cout<<"Data: "<<*p<<endl;}
-};
-int main()
-{
-    cout<<"Shallow Copy : "<<endl;
-    A ob1;
-    *(ob1.p) =25; // use *(ob1.p) = value to fetch the value.
-    ob1.show();
-    A ob2 = ob1;
-    ob2.show();
-
-    *(ob1.p) = 45;
-    ob1.show();    
-    ob2.show();
-    return 0;    
-}
-*/
- 
-// Abstraction implementation through abstract class 
-/*
-#include<iostream>
-using namespace std;
-class Music {
- public : 
-    virtual void bass() = 0;
-    void play(){cout<<"Playing Music "<<endl;}
-};
-class MusicDevice : public Music 
-{
- public : 
-    void bass(){cout<<"Extra bass... "<<endl;}
-};
-class MusicPlayer
-{
-   MusicDevice md; 
-
-public : 
-    void startMusic()
-    {
-        md.bass();
-        md.play();
-    }
-
-};
-
-int main()
-{
-    MusicPlayer mp;
-    mp.startMusic();
     return 0;    
 }
 */
