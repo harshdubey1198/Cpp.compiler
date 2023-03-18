@@ -77,6 +77,7 @@ throw
   // Time complexity : n
 ---
 ## Recursion and Iteration : 
+### 1 : Palindrome 5432112345 // double order recursion
 ```
 #include<iostream>
 using namespace std;
@@ -93,5 +94,68 @@ int main(){
   print(5);
   return 0;
   
+}
+```
+### 2 : Palindrome 1213121 // double order recursion
+```
+#include<iostream>
+using namespace std;
+void print(int n)
+{
+  if(n>0){
+    print(n-1);
+    cout<<n;
+    print(n-1);
+    
+  }
+}
+int main(){
+  print(n);
+  return 0;
+  
+}
+```
+```
+#include<iostream>
+using namespace std;
+int sum (int n)
+{
+    if(n==1 /* n==0 */)
+        return n;
+    return n + sum ( n-1);
+}
+int main()
+{  
+  int sum = 1,n;
+  cin >> n;
+  sum(n);
+  return 0;
+}
+```
+```
+#include<iostream>
+using namespace std;
+int sum (int n)
+{
+    if(n==1) {/* n==0 */
+        return n;}
+    return n + sum ( n-1);
+}
+int main()
+{  
+  //cin >> n;
+  sum(10);
+  return 0;
+}
+```
+## Recurrence relation 
+```
+void fun(int n )
+{
+    if(n>0)
+    {
+        fun(n-1);
+        cout<<n;
+    }
 }
 ```
