@@ -983,7 +983,7 @@ Node* create(int x)
     nptr -> next = Null;
     return nptr;
 }*/
-
+// code for linked list
 #include <iostream>
 using namespace std;
 struct Node
