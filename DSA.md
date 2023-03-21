@@ -173,3 +173,57 @@ for(i=1;i<n;i++)
 break;
 }
 ```
+## Linkedlist
+```
+#include<iostream>
+using namespace std;
+struct Node 
+{
+     int data;
+     struct Node *next; // self-referential structure
+
+};
+Node* insert_end(Node* head, int x) // formal parameter
+{
+Node* nptr = create(x);
+
+if(!head)
+{
+    head = nptr;
+    return head;    
+}
+Node* t = head;
+while(t -> next)
+{
+     t = t -> next;   
+}
+t -> next = nptr;
+return head;
+}
+void display(Node* head)
+{
+    if(!head)
+    {
+        cout<<"List empty"<<endl;
+        return;
+    }
+    while()
+    {
+        cout << head -> data << " ";
+        head = head ->next;
+    }
+}
+int main()
+{
+    Node *head = Null;
+    insert_end(head , 10);  // acctual parameter
+}
+Node* create(int x)
+{
+    Node* nptr = new Node();
+    nptr -> data = x;
+    nptr -> next = Null;
+    return nptr;
+}
+
+```
